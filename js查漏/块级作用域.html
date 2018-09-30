@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 只要是{}包起来的都是块级作用域
+        //注意function(){} 还是私有作用域不是块作用域
+        //{}，if(){},for{},while(){}
+        function fn(){
+            var a = 1;
+        }
+        // console.log(a);
+        // 注意1、在块级作用域中使用var和function定义的变量
+        // 不可以重名
+        {
+            var b = 10;
+            function b(){}//'b' has already been declared
+        }
+        console.log(b)
+        if(1){
+            var c = 1;
+            function c(){}//'c' has already been declared
+        }
+        //块级作用域针对 let const就相当于私有作用域，里面声明
+        // 的变量，外面是拿不到的
+        {
+            let zf = 'zf'
+        }
+        console.log(zf);//zf is not defined
+
+    </script>
+</body>
+
+</html>
