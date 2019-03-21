@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  this:执行主体，this是一个对象
+        // this不是变量，所以说this是不可以赋值的
+
+        // 全局下,this指的是window
+        console.log(this); //window
+        console.log(self); //self就是window
+
+        // 在私有作用域下this问题:
+        // 1)看函数执行的时候前面有没有点，有点，那么点前面是谁，this就是谁
+
+        function fn() {
+            console.log(this); //window
+        }
+        fn()
+        var obj = {
+            fn: fn
+        };
+        obj.fn()
+
+        // 2)给元素绑定事件的时候给谁绑的this就是谁
+        // 3)自执行函数中的this是window
+        (function () {
+            console.log(this); //window
+        })()
+        // 4)当一个函数当做回调函数(当做参数)的时候里面的this是window,但是有些可以修改
+        setTimeout(function () {
+            console.log(this); //window
+        }, 2000)
+        var ary = [1, 2, 3]
+        ary.forEach(function () {
+            console.log(this); //window
+        });
+        ary.forEach(function () {
+            console.log(this); //obj
+        }, obj);
+
+        box.onclick = function () {
+            fn(); //this=>window
+        }
+        box.onclick = fn; //this是box
+
+        var a = 'window'
+        var obj = {
+            a: 'obj',
+            fn:(function(){
+                console.log(this.a);
+                return function(){
+                    console.log(this)
+                }
+            })()
+        }
+        obj.fn();
+        var f = obj.fn;
+        f();
+    </script>
+</body>
+
+</html>

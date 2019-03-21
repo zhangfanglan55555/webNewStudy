@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .shopCar {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <div class="menuCon">
+            <div class="shopCar">购物车(0)
+                <div class="curDetail" style='display: none'>
+                    购物车空空~去逛逛~
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 注意些结构的时候，为了防止鼠标放在curDetail上shopCar的onmouseover失效我们把curDetail卸载
+        // shopCar里面即可
+        // 原生
+        var shopCar = document.getElementsByClassName('shopCar')[0];
+        var curDetail = document.getElementsByClassName('curDetail')[0];
+        shopCar.onmouseover = function () {
+            this.className += 'bg';
+            curDetail.style.display = 'block';
+        }
+        shopCar.onmouseout = function () {
+            this.className = 'shopCar';
+            curDetail.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

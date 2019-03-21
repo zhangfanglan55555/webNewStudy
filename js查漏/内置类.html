@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Number(""); //0
+        Boolean([]); //true, 除了0,NAN,"",null,undefined都是true
+        console.log(Array(1, 2, 3, 4)); //[1,2,3,4]
+        console.log(Array(8)); //变成了有8个空位的数组[,,,,,,,]
+        Array(8); //[empty x 8] =>[,,,,,,,,]
+        // Array(一个参数并且是个数字,此时这个数字代表的是length)
+
+        var n = 1; //字面量创建方式
+        var num = new Number(1); //构造函数创建方式
+        console.log(num);
+        console.log(n);
+
+        // instanceof:判断一个实例是否属于某一个类
+        // 语法：实例 instanceof 类
+        console.log(num instanceof Number); //true
+        console.log(n instanceof Number); //false
+
+        var str = '';
+        var str1 = new String('哈哈哈');
+        console.log(str instanceof String); //false
+        console.log(str1 instanceof String); //true
+        // new 出来的是对象，对于基本数据类型得到的结果是不一样的
+    </script>
+    <script>
+        function FF() {
+            this.a = "哈哈"
+        }
+        var f = new FF();
+        console.log(f instanceof FF); //true
+    </script>
+    <script>
+        // 引用数据类型
+        var ary = [1, 2, 3];
+        var ary1 = new Array(1, 2, 3);
+        console.log(ary instanceof Array); //true
+        console.log(ary1 instanceof Array); //true
+        // 对于基本数据类型使用字面量创建方式和构造函数创建方式结果不一样，字面量创建方式
+        // 结果为一个值，构造函数创建方式结果将其变成一个对象，
+        // 对于引用数据类型两种创建方式没有区别
+    </script>
+    <script>
+        [1, 2].forEach((item) => {
+            console.log(this);//window
+        })
+        [1, 2].forEach(function(item) {
+            console.log(this);//window
+        })
+        [1, 2].forEach(function(item) {
+            console.log(this);//Number对象 {1}、{2}
+        },1)
+    </script>
+</body>
+
+</html>

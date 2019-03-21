@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn() {
+            var a = 1;
+            return a;
+        }
+        // 箭头函数都是匿名函数
+        () => {
+
+        }
+        // let fn = (形参)=>{函数体};
+        let fn = (a) => {
+            a++;
+            return a;
+        }
+        fn(2);
+
+        a =>a=>++a;
+        // 箭头函数是没有this指向的，它里面的this是谁，就看箭头函数所属的作用域
+        // 中的this是谁。
+        var obj ={
+            fn:()=>{
+                let a = ()=>{
+                    conosle.log(this)
+                }
+                a();
+            }
+        }
+        obj.fn();
+        (()=>{
+            console.log(this);//window
+        })()
+
+        var ary = [1,2,3];
+        ary.forEach((item,index,arr)=>{
+            console.log(item)
+        })
+        // 一般给元素绑定时间的时候不会使用箭头函数，因为我们开发写业务逻辑的
+        // 时候一般都是想给谁绑定的事件this就是谁
+    </script>
+</body>
+
+</html>

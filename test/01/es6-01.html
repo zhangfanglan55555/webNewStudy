@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>es6</title>
+</head>
+
+<body>
+    <script>
+    //  一： var&let&const
+            /**
+                var: 可以重复声明、不能定义常量如var PI=3.14,不支持块级作用域if(true){var a = 10};
+            */
+            // let没有预解释
+            let a = 10;
+            let a = 20;//变量名a已经定义过了不能重复声明：Identifir 'a' has already been declared
+
+            // 不能定义常量
+            const PI = 3.14;
+            // PI = 3.15;//错误   to constant variable.
+            // 虽然说常量不能再引用别的对象了，但它的值如果是一个引用类型的话，它的属性还是可以改的
+            const User = {name:'sss',age:18}
+            User.name = 'liming'
+            if(true){
+                let a = 10;
+            }
+            // 以前js只有两个作用域，全局，函数级
+            // 以前写闭包
+            ;(function(){
+
+            })()
+            
+            console.log(a);//a is not defined
+    //二：数组和对象的解构
+    // 解构：分解一个对象的结构
+    // 解构的时候，等号的两边结构类似，右边必须是一个真实的值
+        var arr = [12,[2,2],3];
+        var [a1,b,c] = arr;
+        console.log(a1,b,c)
+
+        var obj = {name:'liming',age:22};
+        var {name:myname,age:myage} = obj;
+        // 原理
+        var myname = obj.name;
+        var myage = obj.age; 
+        console.log(myname,myage)
+        // 默认解构:如果能取出来值就用取出来的值，如果取不出来值就用默认值
+        let obj2 = {name:'liming'}
+        let {name,age=8} = obj2;
+        console.log(name,age);//liming,8
+        
+        let arr4 = [1,2,3];
+        // 省略赋值
+        let [,,j] = arr4;
+        console.log(j)
+
+    </script>
+    <script>
+        /**
+         三：模板字符串：
+         *  1.字符串里可以嵌套变量
+         *  
+         * */
+        let name = 'liming',age=9;
+        let desc = `${name}今年${age}岁了`
+
+        /**
+         * 2.模板字符串可以折行（换行）  
+        */
+       let users = [{id:1,name:'liming'},{id:2,name:'hanmm'}];
+        /**
+         * <ul>
+         *  <li>1:liming</li>
+         *  <li></li>
+         *  <li></li>
+         *</ul>
+        */
+    //    映射：把老数组里的每一个元素映射为新数组的每一个元素
+                // 回调函数中返回什么这一项就是什么
+        let newLis = users.map(function(item,index){
+            return `<li>${item.id}${item.name}</li>`
+        }).join('')
+
+       
+        // 3.带标签的模板字符串就像一个函数调用，参数
+        // 1参数是文本的数组
+            // 其他运算符：...会把后面的所有参数全都放在一个数组里,rest其他运算符只能作为最后一个参数
+            // function desc(strings,...rest){}
+            function desc(strings,name,age){
+                console.log(strings);//['','今年','岁了']
+                console.log(name);//'liming'
+                console.log(age);//'9'
+            }
+            let str = desc`${name}今年${age}岁了`
+
+        let str = 'abcdef';
+        console.log(str.startsWith('a'));//str是否以a开头
+        console.log(str.includes('a'));//str是否包含a字符串
+        console.log(str.endsWith('f'));//str是否以f结尾
+
+
+        // 是否是https开头
+        let address = 'http://www.baidu.com';
+        if(address.startsWith('http')){
+
+        }else if(address.startsWith('https')){
+            
+        }
+        // repeat重复多少次
+        let x = 'xx';
+        console.log(x.repeat(3))
+        //padStart ,不足指定位数在前面补足（默认是空格），第二位参数可以指定补足字符
+        let str5 = 'abc';
+        console.log("("+str5.padStart(5,'x')+")")
+        // padEnd()不足指定位数在后面补足（默认是空格），第二位参数可以指定补足字符
+        console.log("("+str5.padEnd(5,'x')+")")
+    </script>
+</body>
+
+</html>

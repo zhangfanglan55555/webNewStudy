@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        function FF() {
+            this.x = 'x';
+        }
+        FF.prototype.getX = function () {};
+        FF.prototype.__proto__ == Object.prototype;
+
+
+        ary = [1, 2, 3];
+        ary.__proto__ == Array.prototype;
+        Array.prototype.__proto__ == Object.prototype;
+    </script>
+    <script>
+        // 原型继承
+        function A() {
+            this.a = 1;
+        }
+        A.prototype.getA = function () {};
+        A.prototype = new B();
+
+        function B() {
+            this.b = 2;
+        }
+        B.prototype.getB = function () {};
+
+        Object.prototype.getO = function () {};
+        // Object是A这个类的一个父类
+        let a = new A;
+        let b = new B;
+
+        a.getO(); //
+        // a.__proto__（A.prototype）  > a.__proto__.__proto__(A.prototype.__proto__)  找到了getO
+        // A.prototype.__proto__ -->Object.prototype
+        // A.prototype所属的类就是Object
+        // A.prototype是Object的一个实例
+    </script>
+    <script>
+        // 原型继承
+        function A() {
+            this.a = 1;
+        }
+        A.prototype.getA = function () {};
+        A.prototype = new B();
+        // A.prototype.__proto__ == B.prototype
+        // A的原型 = B的实例
+        function B() {
+            this.b = 2;
+        }
+        B.prototype.getB = function () {};
+
+        Object.prototype.getO = function () {};
+        // Object是A这个类的一个父类
+        let a = new A;
+        let b = new B;
+
+        a.getO(); 
+        console.log(a.b);
+        // a.__proto__ -->A.prototype {b:2}
+        console.log(a.getB);
+        // a.__proto__->A.prototype-->A.prototype.__proto__-->B.prototype(getB)
+        
+    </script>
+</body>
+
+</html>

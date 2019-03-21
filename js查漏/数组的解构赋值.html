@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 数组解构赋值的形式
+        // [变量,变量 ] = 数组
+        let [x, y] = [1, 2];
+        // x = 1,y =2
+        let [x, y] = [1];
+        // x = 1,y= undefined
+
+        // 省略赋值(不定参数赋值)
+        let [x1, x2, x3] = [, "嘿嘿", "哈哈"];
+        let [...ary] = [1, 2, 3, 4, 5];
+        // ary = [1,2,3,4,5]
+        let [, , ...ary] = [1, 2, 3, 4, 5];
+        // ary[3,4,5]
+
+        // 带默认值的解构赋值，
+        // 只有赋的值是undefined的时候才会走默认值
+        var a = [1, 2, 3, 4];
+        let [n = 10, m] = a;    
+
+        var a  = []
+        let [n = (function () {
+            console.log("嘿嘿");
+            return 1
+        })(),m ] = a
+        //n "嘿嘿"
+
+        let [[[[m1]]]] = [[[[1]]]]
+        // m1 = 1
+
+        // 美团面试
+       var arr = [[[[[[1,2,3],[4,5,6]]]]]];
+        //如何变成"1,2,3,4,5,6"
+        arr.toString();
+        arr.join();
+        ""+arr;
+
+        // 交换位置
+        var s1 = 12;
+        var s2 = 13;
+        [s1,s2] = [s2,s1]
+        // s1 = 13, s2 = 12
+    </script>
+</body>
+
+</html>

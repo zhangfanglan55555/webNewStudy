@@ -26,23 +26,28 @@
     </ul>
     <script>
         var oLis = document.getElementById('list').getElementsByTagName('li');
-
-        // for (var i = 0; i < oLis.length; i++) {
-        //     oLis[i].i = i;
-        //     oLis[i].onclick = function () {
-        //         console.log(this.i);//
-        //     }
-        // }
         for (var i = 0; i < oLis.length; i++) {
-
-            oLis[i].onclick = (function () {
-
+            oLis[i].onclick = (function (i) {
                 return function () {
                     console.log(i); //
                 }
             })(i)
         }
         console.log(i)
+        //  使用不销毁的作用域来存储他的索引值：循环绑定事件的时候，每一次循环将
+        // 他的索引当做实参传给自执行函数，使用私有变量形参来接收。因为这个自执行
+        // 函数返回一个函数赋值给事件onclick，所以这个自执行函数形成的私有
+        // 作用域不销毁，那么里面的私有变量就不销毁。当用户点击的时候，去找到
+        // 对应的地址，让里面的函数去执行，遇到变量i了，自己没有往上一级找，找到不销毁
+        // 的作用域，里面的私有变量i.
+
+
+        // 使用let,形成私有作用域
+        for (let i = 0; i < oLis.length; i++) {
+            oLis[i].onclick = function () {
+                console.log(i)
+            }
+        }
     </script>
 </body>
 

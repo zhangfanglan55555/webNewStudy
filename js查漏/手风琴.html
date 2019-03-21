@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="menu">
+        <li>
+            <h2>女装</h2>
+            <ul class="menuList">
+                <li>上衣</li>
+                <li>裤子</li>
+                <li>裙子</li>
+                <li>内衣</li>
+            </ul>
+        </li>
+        <li>
+            <h2>男装</h2>
+            <ul class="menuList" style='display:none'>
+                <li>上衣</li>
+                <li>裤子</li>
+                <li>裙子</li>
+                <li>内衣</li>
+            </ul>
+        </li>
+        <li>
+            <h2>童装</h2>
+            <ul class="menuList" style='display:none'>
+                <li>上衣</li>
+                <li>裤子</li>
+                <li>裙子</li>
+                <li>内衣</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        // 原生方法
+        let menu = document.getElementById('menu');
+        let h2All = menu.getElementsByTagName('h2');
+        for (let i = 0; i < h2All.length; i++) {
+            h2All[i].onclick = function () {
+                // 先让所有h2的弟弟ul隐藏
+                for (let j = 0; j < h2All.length; j++) {
+                    h2All[j].nextElementSibling.style.display = 'none';
+                }
+                // 让点击的h2的弟弟显示
+                this.nextElementSibling.style.display = 'block';
+            }
+        }
+    </script>
+    <!-- jq -->
+    <script>
+        $('#menu :header').click(function () {
+            // 让当前点击的h2(this)的弟弟展开(slideDown)显示
+            $(this).next().stop().slideDown().parent().sibings().children('ul').stop().slideUp();;
+            // $(this).next().stop().slideDown().parent().sibings().find('ul').stop().slideUp();
+        });
+    </script>
+</body>
+
+</html>

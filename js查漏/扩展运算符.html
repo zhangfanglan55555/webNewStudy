@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //...
+        // 1) 将数组变成非数组
+        // 2) 将非数组（有 length,有索引:arguments,元素集合，classList类名集合,字符串，Set,Map）变成数组
+        // 1)
+        var ary = [1, 2, 3, 4, 5];
+        var ary1 = [6, 7, 8, 9];
+        console.log(...ary);
+        console.log(ary.concat(ary1)); //[1,2,3,4,5,6,7,8,9] 产生新数组
+        console.log([...ary, ...ary1]); //[1,2,3,4,5,6,7,8,9]  产生新数组
+        console.log(Math.max(...ary)); //5
+        // 2)
+        var str = '12345';
+        str.split(''); //['1','2','3','4','5']
+        console.log([...str]); //['1','2','3','4','5']
+        function sum() {
+           return eval([...arguments].join("+"));
+        }
+        console.log(sum(1, 2, 3, 4, 5, 6, 7));//28
+    </script>
+</body>
+
+</html>

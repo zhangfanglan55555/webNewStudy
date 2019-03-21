@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function FF() {
+            this.x = 1;
+        }
+        FF.prototype = {
+            constructor: FF,
+            getX: function () {}
+        }
+
+        class AA {
+            constructor(n, m) {
+                // AA类本身，this是AA的实例
+                this.x = n;
+            };
+            getX() {}
+        }
+        let a1 = new AA;
+        console.log(a1.x); //undefined
+    </script>
+    <script>
+        class A {
+            constructor() {
+                this.a = 'aa';
+            }
+            getA() {
+
+            }
+        }
+        class B extends A {
+            constructor() {
+                super();
+                // 相当于call继承中的A.call(this)
+                this.b = 'bb';
+            }
+            getB() {}
+        }
+        console.log(new B)
+    </script>
+</body>
+
+</html>

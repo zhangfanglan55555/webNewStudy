@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给函数形参赋值的时候，遇到变量，先看是不是自己小括号当中的
+        // ,如果是就是用自己的,不是就往上一级找
+        var m = 2;
+        function fn(x = m, y) {
+            // (x = m, y) 找，找不到就去上一级（全局）去找
+            var m = 1;
+            console.log(x);//2
+        }
+        fn();
+        var m2 = 2,x=10;
+        function fn2(x = 1, y = x) {
+            // (x = 1, y = x) 找，找不到就去上一级（全局）去找
+            var m2 = 1,x=11;
+            console.log(x);//11
+            console.log(y);//1
+        }
+        fn2();
+    </script>
+</body>
+
+</html>

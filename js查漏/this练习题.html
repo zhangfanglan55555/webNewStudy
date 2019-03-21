@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn2() {
+            console.log(this.n);
+            var n = 'n';
+            this.n = 10;
+            console.log(n);
+        }
+        var obj = {
+            fn2: fn2,
+            n: 1
+        };
+        fn2(); //undefined n
+        obj.fn2(); // 1 n
+        console.log(obj.n, window.n) //10 10
+    </script>
+    <script>
+        function f() {
+            console.log(this);//window
+        }
+        var obj = {
+            fn: (function () {
+                return this.f;//1、indow.f 2、 obj 
+            })(),
+            f:function(){
+                console.log(this);//obj
+            }
+        }
+        f();//this:window
+        obj.f();//this:obj
+        console.log(obj.fn());//this:obj
+    </script>
+    <script>
+        var n = 10;
+        var obj1 = {
+            n:1,
+            f:function(){
+                this.n++;//obj1.n++:1+1= 2
+                n = this.n++;
+                // window.n = obj1.n++ = 2,obj.n = 3
+            }
+        };
+        obj1.f();//this:obj1
+        console.log(n);
+        console.log(obj1.n);
+        window.setTimeout(obj1.f,1000);//this是window
+        // 虽然写的是obj1.f,但是执行的时候里面的this是window。 
+    </script>
+</body>
+</html>
